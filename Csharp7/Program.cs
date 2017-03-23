@@ -10,7 +10,7 @@ namespace Csharp7
     {
         static void Main(string[] args)
         {
-            TestTuple();
+            Ad();
 
             Console.ReadLine();
         }
@@ -35,6 +35,21 @@ namespace Csharp7
         static void PrintPerson((string name, string age, string job) p)
         {
             Console.WriteLine($"{p.age}세 {p.job}인 {p.name}에요");
+        }
+
+        static void Ad()
+        {
+            var (name, age, job) = ParsePerson("17세 여고생인 아드쨩에요");
+            Console.WriteLine((name, age, job));
+        }
+
+        static (string name, string age, string job) ParsePerson(string original)
+        {
+            string age = original.Split('세')[0];
+            string job = original.Split(null)[1].Split('인')[0];
+            string name = original.Split(null)[2].Split('에')[0];
+
+            return (name, age, job);
         }
     }
 }
